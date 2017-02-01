@@ -1,0 +1,5 @@
+docker build -t ags98234/python-ml -f Dockerfile_python_ML .
+docker login
+docker push ags98234/python-ml
+docker rmi -f ags98234/python-ml
+docker pull ags98234/python-ml
