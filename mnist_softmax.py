@@ -30,7 +30,6 @@ import tensorflow as tf
 
 FLAGS = None
 
-
 def main(_):
   # Import data
   mnist = input_data.read_data_sets(FLAGS.data_dir, one_hot=True)
@@ -67,8 +66,7 @@ def main(_):
   # Test trained model
   correct_prediction = tf.equal(tf.argmax(y, 1), tf.argmax(y_, 1))
   accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
-  print(sess.run(accuracy, feed_dict={x: mnist.test.images,
-                                      y_: mnist.test.labels}))
+  print(sess.run(accuracy, feed_dict={x: mnist.test.images, y_: mnist.test.labels}))
 
 if __name__ == '__main__':
   parser = argparse.ArgumentParser()
@@ -76,3 +74,4 @@ if __name__ == '__main__':
                       help='Directory for storing input data')
   FLAGS, unparsed = parser.parse_known_args()
   tf.app.run(main=main, argv=[sys.argv[0]] + unparsed)
+
