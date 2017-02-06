@@ -3,3 +3,6 @@ pandas
 sklearn
 argparse
 tensorflow
+urllib.request
+urllib.error
+tempfile
