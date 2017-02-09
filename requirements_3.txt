@@ -3,8 +3,6 @@ pandas
 sklearn
 argparse
 tensorflow
-urllib3
-scipy
-sklearn
-matplotlib
-seaborn
+urllib.request
+urllib.error
+tempfile

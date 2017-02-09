@@ -1,15 +1,19 @@
 # following tutorial from https://www.tensorflow.org/tutorials/wide/
 
 import tempfile
-import urllib.request
+#import urllib.request
+import urllib
 import pandas as pd
 import tensorflow as tf
 
 train_file = tempfile.NamedTemporaryFile()
 test_file = tempfile.NamedTemporaryFile()
 
-urllib.request.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data", train_file.name)
-urllib.request.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test", test_file.name)
+#urllib.request.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data", train_file.name)
+#urllib.request.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test", test_file.name)
+urllib.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.data", train_file.name)
+urllib.urlretrieve("https://archive.ics.uci.edu/ml/machine-learning-databases/adult/adult.test", test_file.name)
+
 
 COLUMNS = ["age", "workclass", "fnlwgt", "education", "education_num",
            "marital_status", "occupation", "relationship", "race", "gender",
@@ -37,10 +41,11 @@ def input_fn(df):
       values=df[k].values,
       shape=[df[k].size, 1])
                       for k in CATEGORICAL_COLUMNS}
-  # Merges the two dictionaries into one.
-  #feature_cols = dict(continuous_cols.items() + categorical_cols.items())
-  feature_cols = continuous_cols.copy()
-  feature_cols.update(categorical_cols)
+  # Merges the two dictionaries into one.  - editted to below
+  feature_cols = dict(continuous_cols.items() + categorical_cols.items())
+  #feature_cols = continuous_cols.copy()
+  #feature_cols.update(categorical_cols)
+
   # Converts the label column into a constant Tensor.
   label = tf.constant(df[LABEL_COLUMN].values)
   # Returns the feature columns and the label.
